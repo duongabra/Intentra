@@ -1,6 +1,16 @@
 # Intentra
 
 AI Agent Commerce Platform – Product Specification (MVP Demo)
+
+## Implementation status (MVP)
+
+- **Done:** Next.js 14, Supabase (auth, DB), Login, Merchant Dashboard (tạo project, list project, copy API key, **xóa project**), API agent chat (food + travel), intent-based routing (chat không cần gửi API key). **User flow:** login → **/home** (list các store: bán đồ ăn, vé máy bay) → bấm store → **/store/[id]** (catalog), hoặc nút **Let’s chat now** → **/food-demo** (trang chat + ví). API: GET /api/stores, GET /api/stores/[id], GET /api/wallet, DELETE /api/projects/[id].
+- **TODO:** Part 8 – **Widget nhúng script** (popup chat cho web của khách, dùng API key) – làm khi thừa thời gian.
+
+Chi tiết từng bước: **IMPLEMENTATION PLAN.md**.
+
+---
+
 1. Executive Summary
 We are building a two-sided AI Commerce Platform that enables:
 * Users to complete purchases through natural language chat
@@ -64,6 +74,8 @@ The system interprets user intent and programmatically executes transactions on 
 Users interact once.
 The system handles the execution.
 4. Platform Structure (Two-Sided System)
+* **Chat only on Intentra:** Users do not chat on each merchant’s site. Intentra is the middleman: user chats on our page → we infer intent (e.g. food vs flight) → we select the right project and complete the order.
+* **API key per project:** Generated when a merchant creates a project. Used when the merchant later embeds our chat widget on their own website (script + API key), so orders are attributed to their project.
 The platform supports two account types:
 4.1 User Account (Consumer View)
 Users can:
@@ -98,7 +110,7 @@ Merchants integrate their platform through structured endpoints such as:
 This transforms their website into an AI-operable commerce service.
 5. Core User Flow (Demo Scenario)
 1. User logs into the platform.
-2. User sees supported websites.
+2. User sees **home** with a list of stores (e.g. bán đồ ăn, bán vé máy bay). Can open a store to view catalog or click **Let’s chat now** to open chat.
 3. User enters a natural language request in chat:
    “Prepare ingredients for a traditional family ceremony.”
 4. The AI agent:
@@ -143,13 +155,15 @@ For Merchants
 8. MVP Scope
 Included:
 * Two account types (User + Merchant)
-* Integrated chat interface
-* AI-based product selection
+* Integrated chat interface (on Intentra – backend infers intent: food vs travel)
+* Multi vertical: food + travel (project_type), mỗi project một API key
+* AI-based product/ticket selection
 * Automatic order creation
-* Integrated payment simulation
+* Integrated payment simulation (wallet)
 * Wallet balance tracking
-* Dashboard monitoring
+* Dashboard monitoring (create project, list project, copy API key)
 Not included (future phases):
+* **Embed widget** (script nhúng popup chat vào web của merchant – dùng API key) – planned as final step when time allows
 * Multi-tenant scaling
 * Real payment gateway integration
 * Advanced analytics
