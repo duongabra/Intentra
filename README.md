@@ -1,183 +1,298 @@
-# Intentra
+INTENTRA
+Lớp giao dịch trung gian đầu tiên của kỷ nguyên AI
 
-AI Agent Commerce Platform – Product Specification (MVP Demo)
+Intentra là nền tảng AI Orchestrator đóng vai trò lớp trung gian chiến lược giữa người dùng và doanh nghiệp.
 
-## Implementation status (MVP)
+Chúng tôi không phải:
 
-- **Done:** Next.js 14, Supabase (auth, DB), Login, Merchant Dashboard (tạo project, list project, copy API key, **xóa project**), API agent chat (food + travel), intent-based routing (chat không cần gửi API key). **User flow:** login → **/home** (list các store: bán đồ ăn, vé máy bay) → bấm store → **/store/[id]** (catalog), hoặc nút **Let’s chat now** → **/food-demo** (trang chat + ví). API: GET /api/stores, GET /api/stores/[id], GET /api/wallet, DELETE /api/projects/[id].
-- **TODO:** Part 8 – **Widget nhúng script** (popup chat cho web của khách, dùng API key) – làm khi thừa thời gian.
+Một website bán hàng
 
-Chi tiết từng bước: **IMPLEMENTATION PLAN.md**.
+Một chatbot đơn thuần
 
----
+Một marketplace truyền thống
 
-1. Executive Summary
-We are building a two-sided AI Commerce Platform that enables:
-* Users to complete purchases through natural language chat
-* Merchants to integrate their websites as AI-accessible commerce endpoints
-Instead of navigating multiple websites manually, users can simply describe what they need.
-The AI agent understands the intent, selects relevant products from integrated partner websites, and completes the transaction automatically.
-For the MVP demo, the system includes integrated payment capability (simulated wallet balance), demonstrating instant transaction execution after chat confirmation.
-2. Problem Statement
-User Problem
-Modern users are overloaded with digital tasks.
-To complete simple actions such as:
+Intentra là:
 
-* Buying groceries
+Lớp giao dịch trung gian của kỷ nguyên AI
 
-* Ordering event supplies
+Execution layer của nền kinh tế agent
 
-* Purchasing clothes
+Hạ tầng commerce cho tương lai
 
-* Booking travel
+Hiện tại, chưa có hệ thống nào:
 
-* Restocking household essentials
+Vừa điều phối đa nền tảng
 
-They must manually:
+Vừa xử lý thanh toán trực tiếp
 
-* Visit multiple websites
+Vừa cung cấp AI Assistant cho toàn bộ website trong hệ sinh thái
 
-* Search and compare products
+Vừa tạo doanh thu từ cả giao dịch lẫn referral
 
-* Add items to cart
+Intentra là hệ thống đầu tiên tích hợp toàn bộ điều đó trong một kiến trúc thống nhất.
 
-* Fill out repetitive forms
+Người dùng chỉ cần nói
 
-* Enter shipping details
+“Đặt vé đi Đà Nẵng cuối tuần này.”
+“Thanh toán toàn bộ hóa đơn tháng này.”
+“Chuẩn bị nguyên liệu cho mâm cơm cúng 30 Tết.”
+“Đăng ký Netflix Premium 1 tháng.”
+“Gia hạn Google One.”
+“Mua vé xem phim tối nay.”
+“Đóng tiền điện, nước, internet luôn.”
+“Mua bảo hiểm du lịch cho chuyến đi này.”
 
-* Enter payment information
+Hệ thống thực hiện thay họ.
 
-* Complete checkout processes
+Không tìm kiếm.
+Không mở 10 app.
+Không nhập lại thông tin nhiều lần.
 
-This workflow is repetitive, time-consuming, and cognitively demanding.
-Each website requires users to learn a different interface, navigate different layouts, and repeat the same steps again and again.
-Even simple purchases become multi-step processes.
-As a result:
+GIẢI PHÁP
+1. AI Orchestrator – Điều phối đa nền tảng
 
-* Time is wasted
+Người dùng có thể tương tác liên tục như một trợ lý cá nhân thực thụ.
 
-* Decision fatigue increases
+Ví dụ:
 
-* Transactions are often delayed or abandoned
+Người dùng:
+“Tiền điện tháng này của tôi bao nhiêu?”
 
-Users do not want to operate interfaces.
-They want outcomes.
-They want to express intent once and have the task completed for them.
-The core problem is not access to products —
+AI:
+→ Truy xuất hệ thống điện lực đã tích hợp
+→ Trả về số tiền
 
-it is the friction between intention and execution.
-3. Solution Overview
-We provide an AI Agent Orchestration Layer that connects:
-* Users (via chat interface)
-* Merchant platforms (via structured APIs)
-The system interprets user intent and programmatically executes transactions on integrated websites.
-Users interact once.
-The system handles the execution.
-4. Platform Structure (Two-Sided System)
-* **Chat only on Intentra:** Users do not chat on each merchant’s site. Intentra is the middleman: user chats on our page → we infer intent (e.g. food vs flight) → we select the right project and complete the order.
-* **API key per project:** Generated when a merchant creates a project. Used when the merchant later embeds our chat widget on their own website (script + API key), so orders are attributed to their project.
-The platform supports two account types:
-4.1 User Account (Consumer View)
-Users can:
-* View supported merchant websites
-* Chat with the AI agent
-* Review order confirmations
-* Manage payment method
-* Track order history
-* View wallet balance
-Integrated Payment Concept
-Each user account includes:
-* Linked payment method (e.g., credit card)
-* Available wallet balance (demo version)
-* Automatic payment deduction upon order confirmation
-In the demo version:
-* Users start with a preloaded balance (e.g., 10,000,000 VND equivalent)
-* When an order is created, the system automatically deducts the corresponding amount
-* The transaction is reflected instantly in the account balance
-This simulates real payment integration.
-In production, this would connect to actual payment gateways.
-4.2 Merchant Account (Business View)
-Merchants can:
-* Create and manage projects
-* Register their website domain
-* Enable AI access to product listings
-* View AI-generated orders
-* Monitor transaction logs
-* Track revenue from AI-driven sales
-Merchants integrate their platform through structured endpoints such as:
-* Product listing endpoint
-* Order creation endpoint
-This transforms their website into an AI-operable commerce service.
-5. Core User Flow (Demo Scenario)
-1. User logs into the platform.
-2. User sees **home** with a list of stores (e.g. bán đồ ăn, bán vé máy bay). Can open a store to view catalog or click **Let’s chat now** to open chat.
-3. User enters a natural language request in chat:
-   “Prepare ingredients for a traditional family ceremony.”
-4. The AI agent:
-   * Interprets intent
-   * Retrieves products from the integrated merchant
-   * Selects relevant items
-   * Calculates total cost
-5. The system confirms the order summary.
-6. Upon confirmation:
-   * Order is created
-   * Payment is automatically processed
-   * User wallet balance is updated
-7. Order appears in:
-   * User order history
-   * Merchant dashboard
-This demonstrates end-to-end automated commerce execution.
-6. Payment Integration (Conceptual Design)
-For MVP demo:
-* Simulated wallet balance
-* Automatic deduction on purchase
-* Transaction record stored
-For production:
-* Real payment gateway integration
-* Credit card processing
-* Secure tokenized payment methods
-* Settlement and merchant payout logic
-The architecture is designed to support real payment infrastructure in future phases.
-7. Value Proposition
-For Users
-* One unified chat interface
-* No manual browsing
-* Instant checkout
-* Automatic payment processing
-* Reduced cognitive load
-* Faster task completion
-For Merchants
-* AI-driven transaction channel
-* Reduced checkout friction
-* Higher conversion probability
-* Structured integration
-* Access to conversational commerce users
-8. MVP Scope
-Included:
-* Two account types (User + Merchant)
-* Integrated chat interface (on Intentra – backend infers intent: food vs travel)
-* Multi vertical: food + travel (project_type), mỗi project một API key
-* AI-based product/ticket selection
-* Automatic order creation
-* Integrated payment simulation (wallet)
-* Wallet balance tracking
-* Dashboard monitoring (create project, list project, copy API key)
-Not included (future phases):
-* **Embed widget** (script nhúng popup chat vào web của merchant – dùng API key) – planned as final step when time allows
-* Multi-tenant scaling
-* Real payment gateway integration
-* Advanced analytics
-* Subscription billing
-* Enterprise onboarding tools
-9. Strategic Positioning
-This platform is not just a chatbot.
-It is:
-* An AI commerce infrastructure layer
-* A programmable transaction engine
-* A new distribution channel for merchants
-* A productivity layer for consumers
-As AI agents become mainstream,
-commerce will shift from browsing interfaces to expressing intent.
-This system positions us at the center of that transition.
- 
- 
+Người dùng:
+“Ok thanh toán đi.”
+
+AI:
+→ Thanh toán qua ví liên kết (MetaMask / Credit Card / PayPal)
+
+Hai ngày sau:
+
+“Ngày kia là 30 Tết, đặt vé máy bay cho tôi về nhà thăm bố mẹ, mua 2 chai rượu ngoại tặng bố và chuẩn bị nguyên liệu cho mâm cỗ cúng nhé.”
+
+AI sẽ:
+
+1️⃣ Tìm và đề xuất chuyến bay
+
+Từ các hãng đã tích hợp như Vietnam Airlines, Vietjet Air
+→ Gợi ý giờ bay
+→ Người dùng chọn
+→ Đặt và thanh toán
+
+2️⃣ Đặt 2 chai rượu ngoại
+
+Ví dụ:
+
+Chivas Regal 18
+
+Johnnie Walker Blue Label
+
+Tìm từ các nhà phân phối đã listing trên hệ thống.
+
+3️⃣ Đặt 20 nguyên liệu cho mâm cỗ cúng:
+
+Gà ta
+
+Gạo nếp
+
+Đậu xanh
+
+Lá dong
+
+Thịt ba chỉ
+
+Giò lụa
+
+Chả quế
+
+Hành tím
+
+Tỏi
+
+Mắm
+
+Muối
+
+Đường
+
+Nước mắm ngon
+
+Hạt tiêu
+
+Miến
+
+Mộc nhĩ
+
+Nấm hương
+
+Trứng gà
+
+Rau thơm
+
+Trầu cau
+
+Toàn bộ được tìm và đặt đồng thời từ nhiều nền tảng khác nhau đã tích hợp.
+
+👉 Không người dùng nào có thể tự làm điều này trong 5 phút.
+👉 Hệ thống của chúng tôi có thể.
+
+Làm một lần – dùng cho mọi giao dịch
+
+Ngay từ lần đầu tiên sử dụng, người dùng sẽ:
+
+Nhập thông tin cá nhân
+
+Liên kết phương thức thanh toán
+
+MetaMask
+
+Credit/Debit Card
+
+PayPal
+
+Ví điện tử
+
+Liên kết tài khoản dịch vụ (điện lực, nhà mạng, OTT…)
+
+Sau đó:
+
+👉 Không cần nhập lại thông tin trên nhiều website
+👉 Không cần đăng nhập từng app
+👉 Không cần điền lại địa chỉ, thẻ, email
+
+Một lần cấu hình – sử dụng cho toàn bộ hệ sinh thái.
+
+Mỗi khi ra lệnh giao dịch, hệ thống chỉ yêu cầu xác nhận cuối cùng.
+
+Intentra giải quyết trực diện vấn đề lớn nhất của Internet hiện tại:
+Sự lặp lại và phân mảnh.
+
+Hệ sinh thái mở – Mô hình doanh thu đa tầng
+
+Trên trang chủ:
+
+Danh sách toàn bộ website / app đã tích hợp.
+Phân loại theo ngành:
+
+Vé máy bay
+
+Thương mại điện tử
+
+Thanh toán hóa đơn
+
+Streaming
+
+Đồ ăn
+
+Bảo hiểm
+
+Du lịch
+
+Giáo dục
+
+Tài chính
+
+Mô hình doanh thu:
+
+• Mua trực tiếp qua hệ thống AI → thu phí giao dịch 0.1%
+• Bấm chuyển sang website đối tác → thu phí giới thiệu (referral commission)
+• Doanh nghiệp tích hợp widget AI → gia tăng chuyển đổi và giữ chân người dùng
+
+Ngay cả khi người dùng không thanh toán qua Intentra, hệ thống vẫn tạo doanh thu từ referral.
+
+Đây là cấu trúc doanh thu đa tầng, không phụ thuộc vào một nguồn duy nhất.
+
+Widget AI – Nâng cấp website thành AI Assisted Platform
+
+Intentra cung cấp một đoạn script đơn giản.
+
+Khi doanh nghiệp nhúng vào website:
+
+Xuất hiện widget chat AI ở góc phải
+
+Người dùng có thể hỏi và mua trực tiếp
+
+Hệ thống xử lý thanh toán
+
+Không cần doanh nghiệp build AI riêng
+
+Điều này biến bất kỳ website nào thành một nền tảng có AI Assistant mà không cần đầu tư đội ngũ AI hay hạ tầng phức tạp.
+
+Intentra không chỉ mang khách hàng đến cho doanh nghiệp.
+Intentra nâng tầm họ.
+
+Giá trị cho doanh nghiệp
+
+Doanh nghiệp chỉ cần:
+
+Cung cấp domain
+
+API cần thiết
+
+Documentation
+
+Thông tin sản phẩm/dịch vụ
+
+Listing:
+
+Miễn phí
+
+Có trang Admin duyệt
+
+Trao đổi hai chiều
+
+Phí 0.1% khi có giao dịch
+
+Chúng tôi không cạnh tranh với họ.
+Chúng tôi giúp họ tiếp cận người dùng bằng AI.
+
+VỊ THẾ CHIẾN LƯỢC
+
+Intentra là:
+
+Lớp giao dịch trung gian đầu tiên tích hợp:
+
+AI Orchestration
+
+Multi-platform execution
+
+Unified payment layer
+
+Referral + transaction revenue
+
+AI widget cho toàn bộ hệ sinh thái
+
+Internet đang chuyển từ:
+
+Click-based economy
+→ Sang
+Intent-based economy
+
+Người dùng không còn muốn tìm kiếm.
+Họ muốn ra lệnh.
+
+Intentra tồn tại để xử lý phần còn lại.
+
+Tương lai mở rộng
+
+Khi hệ sinh thái đủ lớn:
+
+Quầy hàng riêng
+
+Sản phẩm tự nhập
+
+Premium Merchant Program
+
+AI ưu tiên hiển thị
+
+Subscription automation
+
+AI tài chính cá nhân
+
+Nhưng giai đoạn đầu:
+
+Tập trung vào việc trở thành:
+
+Cầu nối thông minh giữa user và doanh nghiệp.

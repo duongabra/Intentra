@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
         endpoint,
         api_key: apiKey,
       })
-      .select("id, api_key")
+      .select("id, name, domain, endpoint, api_key, project_type, created_at")
       .single();
 
     if (error) {
@@ -90,7 +90,13 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ apiKey: project?.api_key ?? apiKey });
+    const projectForList = project
+      ? { ...project, is_hidden: (project as { is_hidden?: boolean }).is_hidden ?? false }
+      : null;
+    return NextResponse.json({
+      apiKey: project?.api_key ?? apiKey,
+      project: projectForList,
+    });
   } catch (e) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : "Internal error" },

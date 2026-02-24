@@ -12,7 +12,7 @@ Project Name: Intentra (Demo Localhost)
 | 4 | Auth + Login, redirect theo role | ✅ Done |
 | 5 | API: POST /api/projects/create, POST /api/agent/chat | ✅ Done |
 | 6 | Merchant Dashboard | ✅ Done |
-| 7 | User chat (food-demo / trang chung, intent tự chọn project) | ✅ Done |
+| 7 | User chat (/chat trang chung, intent tự chọn project) | ✅ Done |
 | 8 | Widget nhúng script (popup chat cho web của khách, dùng API key) | TODO – làm khi thừa thời gian |
 
 I. Tech Stack
@@ -149,9 +149,9 @@ D. Section: Project List
 Hiển thị list project: Name, Domain, Type, API Key, Created At, nút **Xóa** (gọi DELETE /api/projects/[id]). GET /api/projects (Bearer token) để lấy danh sách.
 
 3️⃣ User flow (sau login role = user)
-- **/home:** Trang chủ – list các trang đã tạo (stores: bán đồ ăn, bán vé máy bay). Bấm vào store → /store/[id]. Nút **Let’s chat now** → /food-demo.
-- **/store/[id]:** Trang bán hàng bình thường (catalog: products hoặc tickets). Chưa có widget chat; sau thêm widget thì popup chat góc phải. CTA "Đặt hàng qua chat" → /food-demo.
-- **/food-demo:** Trang chat (ví + chat). Layout: left wallet balance, right chat + input + Gửi.
+- **/home:** Trang chủ – list các trang demo merchant (config trong lib/merchant-demo-routes.ts), ví dụ Demo Food Store → /merchant/food-store. Nút **Let’s chat now** → /chat.
+- **/merchant/food-store** (và các trang khác trong merchant/): Trang web demo (catalog: products). CTA "Đặt hàng qua chat" → /chat.
+- **/chat:** Trang chat chung (ví + chat). Layout: left wallet balance, right chat + input + Gửi.
 
 B. Chat Behavior
 
@@ -279,7 +279,9 @@ Số dư còn lại
 VIII. Folder Structure (đã tạo)
 /app
   /login, /dashboard
-  /home, /store/[id], /food-demo   ← User: home (list stores) → store (catalog) hoặc chat
+  /home   ← User: list merchant demo pages (config), link /merchant/food-store, …
+  /chat   ← Trang chat chung (ví + chat)
+  /merchant/food-store, …   ← Các trang web demo merchant (catalog, CTA → /chat)
   /api/projects, /api/projects/create, /api/projects/[id]   ← GET list, POST create, DELETE
   /api/agent/chat, /api/stores, /api/stores/[id], /api/wallet
 
@@ -319,7 +321,7 @@ Mục tiêu: Phase 1 chỉ làm food; code và DB đặt nền để sau thêm w
 - POST /api/projects/create: khi tạo project, gửi kèm project_type (mặc định 'food'). Sau form “Create Website” có thể thêm dropdown Loại: Đồ ăn / Du lịch.
 
 3️⃣ Frontend
-- **User:** Login → /home. Trang home: list stores (GET /api/stores), link /store/[id]; nút “Let’s chat now” → /food-demo. Trang /store/[id]: catalog (products hoặc tickets từ GET /api/stores/[id]), CTA “Đặt hàng qua chat” → /food-demo. Trang /food-demo: ví + chat.
+- **User:** Login → /home. Trang home: list merchant demo routes (config), link /merchant/food-store; nút "Let's chat now" → /chat. Trang /merchant/food-store: catalog (products từ API), CTA → /chat. Trang /chat: ví + chat. “Đặt hàng qua chat” .
 - **Dashboard:** Project list có cột “Loại” (Food / Travel) và nút **Xóa** (DELETE /api/projects/[id]). Form tạo project có field project_type.
 - Component: tách phần “Chat + kết quả đơn” thành component dùng chung (message, items, total, remaining_balance); mỗi vertical chỉ khác cách hiển thị danh sách (sản phẩm vs vé/tour).
 
@@ -341,7 +343,7 @@ Mục tiêu: Phase 1 chỉ làm food; code và DB đặt nền để sau thêm w
 X. Important Demo Notes
 - Không cần deploy; chạy localhost.
 - Không cần RLS phức tạp; API dùng supabaseAdmin (service role) khi cần.
-- Phân quyền FE: check profile.role sau login, redirect merchant → /dashboard, user → /home. User từ /home vào từng store (/store/[id]) hoặc bấm Let’s chat now → /food-demo.
+- Phân quyền FE: check profile.role sau login, redirect merchant → /dashboard, user → /home. User từ /home vào từng trang demo (/merchant/food-store) hoặc bấm Let’s chat now → /chat.
 - Merchant API key: generate thật khi tạo project (sk_demo_ + hex). Demo có thể dùng sk_demo_seed (từ seed).
 - Grok API key: lấy từ .env GROK_API_KEY; endpoint api.x.ai/v1/chat/completions.
 - Mock 100 sản phẩm: đã seed trong supabase/seed.sql.

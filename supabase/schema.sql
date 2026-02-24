@@ -21,13 +21,15 @@ create table if not exists public.projects (
   domain text,
   endpoint text,
   api_key text,
+  is_hidden boolean not null default false,
   created_at timestamptz not null default now()
 );
 
--- 3. products (food catalog for project_type = 'food')
+-- 3. products (food catalog; project_type đồng bộ với projects, dùng cho merchant demo)
 create table if not exists public.products (
   id uuid primary key default gen_random_uuid(),
   project_id uuid not null references public.projects(id) on delete cascade,
+  project_type text not null default 'food' check (project_type in ('food', 'travel')),
   name text not null,
   price integer not null check (price >= 0),
   category text not null,

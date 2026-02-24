@@ -13,6 +13,7 @@ interface Project {
   endpoint: string | null;
   api_key: string | null;
   project_type: string;
+  is_hidden?: boolean;
   created_at: string;
 }
 
@@ -29,6 +30,7 @@ export default function DashboardPage() {
   const [projectType, setProjectType] = useState<"food" | "travel">("food");
   const [copyDone, setCopyDone] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [restoringId, setRestoringId] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -54,9 +56,14 @@ export default function DashboardPage() {
   async function fetchProjects(token: string) {
     const res = await fetch("/api/projects", {
       headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store",
     });
-    if (!res.ok) return;
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      setError(data.error || `Lỗi ${res.status}: Không tải được danh sách project. Thử đăng xuất rồi đăng nhập lại.`);
+      return;
+    }
+    setError(null);
     setProjects(data.projects ?? []);
   }
 
@@ -95,7 +102,11 @@ export default function DashboardPage() {
       setName("");
       setDomain("");
       setDescription("");
-      await fetchProjects(session.access_token);
+      if (data.project && typeof data.project === "object") {
+        setProjects((prev) => [data.project as Project, ...prev]);
+      } else {
+        await fetchProjects(session.access_token);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Request failed");
     }
@@ -116,7 +127,7 @@ export default function DashboardPage() {
     }
   }
 
-  async function handleDelete(projectId: string) {
+  async function handleHide(projectId: string) {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.access_token) return;
     setDeletingId(projectId);
@@ -129,12 +140,34 @@ export default function DashboardPage() {
         setError(null);
         await fetchProjects(session.access_token);
       } else {
-        setError((await res.json().catch(() => ({}))).error ?? "Delete failed");
+        setError((await res.json().catch(() => ({}))).error ?? "Ẩn thất bại");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Delete failed");
+      setError(err instanceof Error ? err.message : "Ẩn thất bại");
     } finally {
       setDeletingId(null);
+    }
+  }
+
+  async function handleRestore(projectId: string) {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) return;
+    setRestoringId(projectId);
+    try {
+      const res = await fetch(`/api/projects/${projectId}`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.ok) {
+        setError(null);
+        await fetchProjects(session.access_token);
+      } else {
+        setError((await res.json().catch(() => ({}))).error ?? "Hiện lại thất bại");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Hiện lại thất bại");
+    } finally {
+      setRestoringId(null);
     }
   }
 
@@ -232,7 +265,14 @@ export default function DashboardPage() {
         <section className="bg-white rounded-lg border p-6 shadow-sm">
           <h2 className="text-lg font-semibold mb-4">Project List</h2>
           {projects.length === 0 ? (
-            <p className="text-gray-500 text-sm">Chưa có project. Tạo project ở trên.</p>
+            <div className="text-gray-500 text-sm space-y-1">
+              <p>Chưa có project. Tạo project ở trên.</p>
+              {!error && (
+                <p className="text-xs text-gray-400 mt-2">
+                  Nếu DB đã có project nhưng không hiện: đăng nhập đúng merchant@demo.com và kiểm tra cột merchant_id trong bảng projects trùng với user id của bạn.
+                </p>
+              )}
+            </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -248,8 +288,13 @@ export default function DashboardPage() {
                 </thead>
                 <tbody>
                   {projects.map((p) => (
-                    <tr key={p.id} className="border-b">
-                      <td className="py-2 pr-4 font-medium">{p.name}</td>
+                    <tr key={p.id} className={`border-b ${p.is_hidden ? "bg-gray-50 opacity-80" : ""}`}>
+                      <td className="py-2 pr-4 font-medium">
+                        {p.name}
+                        {p.is_hidden && (
+                          <span className="ml-2 text-xs text-gray-500">(Đã ẩn)</span>
+                        )}
+                      </td>
                       <td className="py-2 pr-4 text-gray-600">{p.domain || "—"}</td>
                       <td className="py-2 pr-4">{p.project_type === "travel" ? "Vé máy bay" : "Đồ ăn"}</td>
                       <td className="py-2 pr-4">
@@ -266,14 +311,25 @@ export default function DashboardPage() {
                       </td>
                       <td className="py-2 text-gray-600">{formatDate(p.created_at)}</td>
                       <td className="py-2">
-                        <button
-                          type="button"
-                          onClick={() => handleDelete(p.id)}
-                          disabled={deletingId === p.id}
-                          className="text-red-600 hover:underline text-xs disabled:opacity-50"
-                        >
-                          {deletingId === p.id ? "…" : "Xóa"}
-                        </button>
+                        {p.is_hidden ? (
+                          <button
+                            type="button"
+                            onClick={() => handleRestore(p.id)}
+                            disabled={restoringId === p.id}
+                            className="text-green-600 hover:underline text-xs disabled:opacity-50"
+                          >
+                            {restoringId === p.id ? "…" : "Hiện lại"}
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => handleHide(p.id)}
+                            disabled={deletingId === p.id}
+                            className="text-red-600 hover:underline text-xs disabled:opacity-50"
+                          >
+                            {deletingId === p.id ? "…" : "Ẩn"}
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

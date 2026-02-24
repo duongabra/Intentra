@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerAuthUser } from "@/lib/supabase";
 import { supabaseAdmin } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   try {
     const token = req.headers.get("authorization");
@@ -33,7 +35,11 @@ export async function GET(req: NextRequest) {
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
-    return NextResponse.json({ projects: projects ?? [] });
+    const withHidden = (projects ?? []).map((p) => ({
+      ...p,
+      is_hidden: (p as { is_hidden?: boolean }).is_hidden ?? false,
+    }));
+    return NextResponse.json({ projects: withHidden });
   } catch (e) {
     return NextResponse.json(
       { error: e instanceof Error ? e.message : "Internal error" },

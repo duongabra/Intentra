@@ -18,6 +18,14 @@
    - Password: (đặt mật khẩu, nhớ để login)
    - Create user
 
+## Bước 2b: Nếu bảng `projects` đã tạo trước đó (không có cột `is_hidden`)
+
+Chạy file `add-is-hidden.sql` trong SQL Editor để thêm cột `is_hidden` (ẩn/hiện project, không xóa DB).
+
+## Bước 2c: Cột `project_type` trên bảng `products`
+
+Để router `/merchant/food-store` và 4 web demo sau lấy data theo type: chạy `add-project-type-products.sql` (thêm cột `project_type`). Script `reset-food-and-seed-100.sql` cũng tự thêm cột nếu chưa có.
+
 ## Bước 3: Chạy Seed
 
 1. Vào **SQL Editor** → **New query**.
@@ -29,6 +37,10 @@ Seed sẽ:
 - Tạo 1 project **Demo Food Store** (type `food`) cho merchant.
 - Thêm **100 sản phẩm đồ ăn** vào project đó.
 - Tạo **wallet** cho user với số dư **10,000,000 VND**.
+
+## Reset Food Store (xóa data food + tạo lại 1 project + 100 sản phẩm)
+
+Chạy **`reset-food-and-seed-100.sql`** trong SQL Editor. Script sẽ: thêm cột `project_type` vào `products` nếu chưa có; tạo 1 project food (hoặc xóa orders/products của project food hiện có); insert 100 sản phẩm đồ ăn với `project_type = 'food'`. Trang `/merchant/food-store` gọi API `GET /api/merchant-demo/food-store` (lấy theo `project_type`).
 
 ## Bước 3b (tuỳ chọn): Travel – Vé máy bay
 

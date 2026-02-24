@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 
-/** Public list of stores (projects) for home page. */
+export const dynamic = "force-dynamic";
+
+/** Public list of stores (projects) for home page. Always reads from DB, no cache. */
 export async function GET() {
   const admin = supabaseAdmin;
   if (!admin) {
@@ -11,8 +13,11 @@ export async function GET() {
     .from("projects")
     .select("id, name, project_type")
     .order("created_at", { ascending: false });
+
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return NextResponse.json({ stores: data ?? [] });
+  const res = NextResponse.json({ stores: data ?? [] });
+  res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
+  return res;
 }

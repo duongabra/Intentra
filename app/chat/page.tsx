@@ -15,7 +15,7 @@ function formatVnd(n: number) {
   return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(n);
 }
 
-export default function FoodDemoPage() {
+export default function ChatPage() {
   const router = useRouter();
   const [balance, setBalance] = useState<number | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
