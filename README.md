@@ -170,6 +170,38 @@ Intentra cung cấp một đoạn script đơn giản.
 
 ---
 
+## 💰 DOANH THU
+
+### Doanh thu đến từ đâu
+
+Intentra tạo doanh thu từ nhiều nguồn, không phụ thuộc vào một kênh duy nhất:
+
+| Nguồn | Mô tả |
+|-------|--------|
+| **Phí giao dịch** | Người dùng mua/thanh toán qua AI → Intentra thu phí **0.1%** trên giao dịch. |
+| **Referral** | User click qua website đối tác (không thanh toán qua Intentra) → thu hoa hồng giới thiệu từ merchant. |
+| **Widget / Integration** | Doanh nghiệp nhúng widget AI → tăng chuyển đổi, Intentra có thể thu phí subscription hoặc % theo volume. |
+
+**Điểm then chốt:** Dù user thanh toán trực tiếp qua Intentra hay chỉ dùng Intentra để khám phá rồi chuyển sang site đối tác, hệ thống vẫn có thể tạo doanh thu — cấu trúc đa tầng, bền vững.
+
+<br />
+
+### Tương lai mở rộng doanh thu
+
+Khi hệ sinh thái và quy mô tăng, doanh thu có thể mở rộng theo các hướng sau:
+
+- **Tăng trần phí / tier** — Giữ 0.1% cho gói cơ bản; gói Premium Merchant hoặc volume lớn có cấu trúc phí riêng (subscription + % thấp hơn).  
+- **Quầy hàng & sản phẩm tự nhập** — Merchant bán trực tiếp trên nền Intentra → thu phí listing hoặc % doanh thu.  
+- **AI ưu tiên hiển thị** — Gợi ý trung lập làm nền; merchant có thể trả thêm để tăng độ hiển thị (minh bạch, có kiểm soát).  
+- **Subscription automation & AI tài chính** — User trả phí subscription cho các tính năng nâng cao (tự động hóa đơn, tối ưu chi tiêu) → doanh thu định kỳ.  
+- **Mở rộng ngành dọc** — Mỗi ngành mới (bảo hiểm, giáo dục, tài chính) thêm luồng giao dịch và referral, nhân bản mô hình doanh thu hiện tại.  
+
+*Mục tiêu dài hạn: doanh thu đa nguồn — transaction, referral, subscription, và các dịch vụ giá trị gia tăng — giúp Intentra ổn định và có thể mở rộng bền vững.*
+
+<br />
+
+---
+
 ## 🎯 VỊ THẾ CHIẾN LƯỢC
 
 **Intentra là:**
