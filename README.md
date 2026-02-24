@@ -1,65 +1,55 @@
 # 🚀 INTENTRA
 
-**Lớp giao dịch trung gian đầu tiên của kỷ nguyên AI**
+**User nói — AI làm — Doanh nghiệp giao hàng**
 
 ---
 
-Intentra là nền tảng AI Orchestrator đóng vai trò lớp trung gian chiến lược giữa người dùng và doanh nghiệp.
+**Intentra là gì?**  
+Cầu nối giữa người dùng và doanh nghiệp. User nói điều họ cần, AI điều phối và thanh toán, doanh nghiệp giao hàng hoặc cung cấp dịch vụ. Chúng tôi không bán hàng — chúng tôi kết nối.
 
 <br />
 
 ### Chúng tôi không phải:
 
-- Một website bán hàng  
-- Một chatbot đơn thuần  
-- Một marketplace truyền thống  
-- Đơn vị vận hành thay doanh nghiệp — *vận hành web riêng, chuẩn bị hàng, vận chuyển là việc của doanh nghiệp; chúng tôi chỉ là lớp điều phối trung gian, kết nối họ với user.*  
+- Website bán hàng  
+- Chatbot đơn thuần  
+- Sàn thương mại (marketplace)  
+- Đơn vị vận hành thay doanh nghiệp *(web, kho, vận chuyển là việc của họ; ta chỉ kết nối họ với user)*  
 
 ### Intentra là:
 
-- Lớp giao dịch trung gian của kỷ nguyên AI  
-- Execution layer của nền kinh tế agent  
-- Hạ tầng commerce cho tương lai  
+- Nơi user **ra lệnh bằng lời** — AI thực hiện thay  
+- **Lớp trung gian:** một bên là user, một bên là nhiều doanh nghiệp  
+- **Một điểm vào** để mua sắm, thanh toán, đặt dịch vụ qua trợ lý AI  
 
 <br />
 
-Hiện tại, chưa có hệ thống nào:
-
-- Vừa điều phối đa nền tảng  
-- Vừa xử lý thanh toán trực tiếp  
-- Vừa cung cấp AI Assistant cho toàn bộ website trong hệ sinh thái  
-- Vừa tạo doanh thu từ cả giao dịch lẫn referral  
-
-**Intentra là hệ thống đầu tiên tích hợp toàn bộ điều đó trong một kiến trúc thống nhất.**
+**Tại sao chưa ai làm giống vậy?**  
+Chưa có hệ thống nào vừa cho user “nói một câu làm nhiều việc” (vé, đồ ăn, hóa đơn…), vừa thu tiền từ giao dịch và từ giới thiệu. Intentra làm cả hai: **một nơi ra lệnh, nhiều nguồn thực hiện.**
 
 <br />
 
 ---
 
-### Người dùng chỉ cần nói
+### User chỉ cần nói
 
 > *"Đặt vé đi Đà Nẵng cuối tuần này."*  
-> *"Thanh toán toàn bộ hóa đơn tháng này."*  
-> *"Chuẩn bị nguyên liệu cho mâm cơm cúng 30 Tết."*  
-> *"Đăng ký Netflix Premium 1 tháng."*  
-> *"Gia hạn Google One."*  
+> *"Thanh toán hóa đơn tháng này."*  
+> *"Chuẩn bị nguyên liệu mâm cơm cúng 30 Tết."*  
+> *"Đăng ký Netflix 1 tháng."*  
 > *"Mua vé xem phim tối nay."*  
-> *"Đóng tiền điện, nước, internet luôn."*  
-> *"Mua bảo hiểm du lịch cho chuyến đi này."*
+> *"Đóng tiền điện, nước, internet."*  
+> *"Mua bảo hiểm du lịch cho chuyến này."*
 
-**Hệ thống thực hiện thay họ.**
-
-- Không tìm kiếm.  
-- Không mở 10 app.  
-- Không nhập lại thông tin nhiều lần.  
+**AI sẽ làm thay.** Không cần tìm kiếm, không mở từng app, không nhập lại thông tin nhiều lần.  
 
 ---
 
 ## 📋 GIẢI PHÁP
 
-### 1. AI Orchestrator – Điều phối đa nền tảng
+### 1. AI Orchestrator — User nói, AI làm
 
-Người dùng có thể tương tác liên tục như một trợ lý cá nhân thực thụ.
+User trò chuyện như với trợ lý: hỏi, ra lệnh, xác nhận. AI điều phối nhiều dịch vụ và thanh toán giúp.
 
 **Ví dụ:**
 
@@ -89,14 +79,14 @@ Người dùng có thể tương tác liên tục như một trợ lý cá nhân
 
    Toàn bộ được tìm và đặt đồng thời từ nhiều nền tảng khác nhau đã tích hợp.
 
-- 👉 Không người dùng nào có thể tự làm điều này trong 5 phút.  
-- 👉 Hệ thống của chúng tôi có thể.  
+- 👉 User tự làm chuỗi việc này trong 5 phút là rất khó.  
+- 👉 Intentra làm được.  
 
 <br />
 
-### Làm một lần – dùng cho mọi giao dịch
+### Làm một lần — dùng mãi
 
-Ngay từ lần đầu tiên sử dụng, người dùng sẽ:
+Lần đầu dùng, user chỉ cần:
 
 - Nhập thông tin cá nhân  
 - Liên kết phương thức thanh toán: **MetaMask** · **Credit/Debit Card** · **PayPal** · **Ví điện tử**  
@@ -108,12 +98,9 @@ Ngay từ lần đầu tiên sử dụng, người dùng sẽ:
 - 👉 Không cần đăng nhập từng app  
 - 👉 Không cần điền lại địa chỉ, thẻ, email  
 
-*Một lần cấu hình – sử dụng cho toàn bộ hệ sinh thái.*
+*Một lần cấu hình — dùng cho mọi giao dịch sau này.*
 
-Mỗi khi ra lệnh giao dịch, hệ thống chỉ yêu cầu xác nhận cuối cùng.
-
-**Intentra giải quyết trực diện vấn đề lớn nhất của Internet hiện tại:**  
-*Sự lặp lại và phân mảnh.*
+Mỗi lần ra lệnh, user chỉ cần xác nhận. Không phải nhập lại địa chỉ, thẻ, đăng nhập từng app. **Intentra giảm sự lặp lại và phân mảnh** — vấn đề lớn của Internet hiện tại.
 
 <br />
 
