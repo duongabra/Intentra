@@ -141,6 +141,7 @@ Intentra cung cấp một đoạn script đơn giản.
 
 **Khi doanh nghiệp nhúng vào website:**
 
+- Trở thành 1 node trong network của ta
 - Xuất hiện widget chat AI ở góc phải  
 - Người dùng có thể hỏi và mua trực tiếp  
 - Hệ thống xử lý thanh toán  
