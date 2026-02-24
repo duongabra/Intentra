@@ -13,6 +13,7 @@ Intentra là nền tảng AI Orchestrator đóng vai trò lớp trung gian chi�
 - Một website bán hàng  
 - Một chatbot đơn thuần  
 - Một marketplace truyền thống  
+- Đơn vị vận hành thay doanh nghiệp — *vận hành web riêng, chuẩn bị hàng, vận chuyển là việc của doanh nghiệp; chúng tôi chỉ là lớp điều phối trung gian, kết nối họ với user.*  
 
 ### Intentra là:
 
@@ -164,6 +165,10 @@ Intentra cung cấp một đoạn script đơn giản.
 - Thông tin sản phẩm/dịch vụ  
 
 **Listing:** Miễn phí · Có trang Admin duyệt · Trao đổi hai chiều · Phí 0.1% khi có giao dịch  
+
+<br />
+
+**👉 Vận hành các web riêng là việc của doanh nghiệp:** họ tự chuẩn bị hàng, tự vận chuyển, tự quản lý kho và đơn. **Intentra không dự phần vận hành** — chúng tôi chỉ là **lớp điều phối trung gian**, kết nối doanh nghiệp với user qua AI và thanh toán.
 
 *Chúng tôi không cạnh tranh với họ.*  
 *Chúng tôi giúp họ tiếp cận người dùng bằng AI.*
