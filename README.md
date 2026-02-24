@@ -195,6 +195,84 @@ Người dùng không còn muốn tìm kiếm.
 
 <br />
 
+### Why Now?
+
+- AI đã đủ tốt để xử lý multi-step orchestration  
+- Người dùng đã quen với AI assistant  
+- API economy đã trưởng thành  
+- Open banking / crypto wallet phổ biến hơn  
+
+### Network Effect
+
+Intentra có 2 network effect:
+
+| **User side** | **Merchant side** |
+|---------------|-------------------|
+| → Càng nhiều merchant → càng tiện | → Càng nhiều user → càng có doanh thu |
+
+<br />
+
+---
+
+## 🎯 Câu hỏi
+
+- Tại sao Google không làm?  
+- Tại sao OpenAI không làm?  
+- Tại sao Stripe không làm?  
+
+<br />
+
+### 1. Tại sao Google không làm?
+
+**Google có:** Search · Google Pay · Android · Assistant · Cloud · Maps · YouTube  
+
+**Vấn đề của Google:**
+
+1. **Mô hình kinh doanh xung đột**  
+   Google kiếm tiền từ: → Quảng cáo · → Click · → Search traffic  
+   Intentra thì: → Giảm search · → Bỏ qua click · → Thực hiện giao dịch trực tiếp  
+   *Nếu Google đẩy mạnh intent-based execution, họ tự phá mô hình quảng cáo của mình.*
+
+2. **Google không trung lập**  
+   Google có lợi ích riêng: Ưu tiên sản phẩm của mình · Ưu tiên đối tác trả tiền quảng cáo  
+   Intentra định vị là: → Neutral orchestration layer · → Không ưu tiên ai · → Kiếm tiền từ transaction & referral minh bạch  
+
+3. **Big Tech không linh hoạt**  
+   Google cần: Compliance toàn cầu · Phê duyệt nội bộ · Tối ưu cổ đông  
+   Startup có thể: → Build nhanh · → Thử nghiệm nhanh · → Tập trung niche trước  
+
+<br />
+
+### 2. Tại sao OpenAI không làm?
+
+OpenAI xây AI.
+
+**Họ không muốn:** Trở thành payment processor · Làm compliance merchant · Xử lý chargeback · Quản lý merchant network  
+
+| **OpenAI là** | **Intentra là** |
+|---------------|-----------------|
+| → Infrastructure AI provider | → AI Commerce Execution Layer |
+
+*OpenAI bán engine. Intentra xây hệ sinh thái thương mại trên engine đó.*
+
+**Nếu OpenAI làm trực tiếp:** Họ sẽ xung đột với toàn bộ khách hàng API · Họ trở thành competitor của đối tác · *Điều đó không phù hợp chiến lược của họ.*
+
+<br />
+
+### 3. Tại sao Stripe không làm?
+
+**Stripe rất mạnh về:** Payment · API · Checkout · Fraud · Infrastructure  
+
+**Nhưng Stripe không:** Điều phối vé máy bay · Gợi ý nguyên liệu mâm cỗ · Xử lý AI conversation orchestration · Tích hợp đa ngành như một assistant  
+
+| **Stripe là** | **Intentra là** |
+|---------------|-----------------|
+| → Payment infrastructure | → Decision + orchestration + execution layer |
+
+*Stripe xử lý tiền. Intentra xử lý ý định.*
+
+<br />
+
 ### Tương lai mở rộng
 
 **Khi hệ sinh thái đủ lớn:**
