@@ -104,22 +104,19 @@ Mỗi lần ra lệnh, user chỉ cần xác nhận. Không phải nhập lại 
 
 <br />
 
-### Hệ sinh thái mở – Mô hình doanh thu đa tầng
+### Hệ sinh thái mở — Mô hình doanh thu đa tầng
 
-**Trên trang chủ:**
+*"Mở" = bất kỳ doanh nghiệp nào cũng có thể tích hợp (API, widget), không bị khóa vào một sàn duy nhất.*
 
-- Danh sách toàn bộ website / app đã tích hợp.  
-- Phân loại theo ngành: Vé máy bay · Thương mại điện tử · Thanh toán hóa đơn · Streaming · Đồ ăn · Bảo hiểm · Du lịch · Giáo dục · Tài chính  
+**Trên trang chủ:** Danh sách website/app đã kết nối, phân loại theo ngành (vé máy bay, đồ ăn, streaming, bảo hiểm, tài chính…).
 
-**Mô hình doanh thu:**
+**Doanh thu đến từ 3 kênh rõ ràng:**
 
-- Mua trực tiếp qua hệ thống AI → thu phí giao dịch **0.1%**  
-- Bấm chuyển sang website đối tác → thu phí giới thiệu (referral commission)  
-- Doanh nghiệp tích hợp widget AI → gia tăng chuyển đổi và giữ chân người dùng  
+- User **thanh toán qua Intentra** → ta thu **0.1% trên giá trị giao dịch**.  
+- User **chỉ click qua site đối tác** (không thanh toán qua ta) → merchant trả **hoa hồng giới thiệu** cho Intentra.  
+- Doanh nghiệp **nhúng widget AI** → tăng tỷ lệ chuyển đổi; ta có thể thu phí subscription hoặc % theo volume.  
 
-Ngay cả khi người dùng không thanh toán qua Intentra, hệ thống vẫn tạo doanh thu từ referral.
-
-*Đây là cấu trúc doanh thu đa tầng, không phụ thuộc vào một nguồn duy nhất.*
+*Nhờ vậy, dù user có thanh toán qua ta hay không, Intentra vẫn có thể có thu nhập — không phụ thuộc một nguồn duy nhất.*
 
 <br />
 
@@ -168,13 +165,13 @@ Intentra cung cấp một đoạn script đơn giản.
 
 Intentra tạo doanh thu từ nhiều nguồn, không phụ thuộc vào một kênh duy nhất:
 
-| Nguồn | Mô tả |
-|-------|--------|
-| **Phí giao dịch** | Người dùng mua/thanh toán qua AI → Intentra thu phí **0.1%** trên giao dịch. |
-| **Referral** | User click qua website đối tác (không thanh toán qua Intentra) → thu hoa hồng giới thiệu từ merchant. |
-| **Widget / Integration** | Doanh nghiệp nhúng widget AI → tăng chuyển đổi, Intentra có thể thu phí subscription hoặc % theo volume. |
+| Nguồn | Mô tả (rõ ràng cho nhà đầu tư) |
+|-------|--------------------------------|
+| **Phí giao dịch** | User thanh toán qua Intentra → ta thu **0.1% trên giá trị giao dịch** (ví dụ giao dịch 1 triệu → Intentra 1k). |
+| **Referral** | User dùng Intentra để tìm, rồi sang website merchant thanh toán → **merchant trả hoa hồng giới thiệu** cho Intentra (theo thỏa thuận từng đối tác). |
+| **Widget / Integration** | Merchant nhúng widget AI lên web của họ → tăng chuyển đổi. Intentra thu **subscription hoặc % doanh thu** từ merchant (kế hoạch triển khai theo giai đoạn). |
 
-**Điểm then chốt:** Dù user thanh toán trực tiếp qua Intentra hay chỉ dùng Intentra để khám phá rồi chuyển sang site đối tác, hệ thống vẫn có thể tạo doanh thu — cấu trúc đa tầng, bền vững.
+**Điểm then chốt:** Có giao dịch qua ta → thu phí. Không qua ta nhưng user đi từ Intentra → vẫn thu referral. Hai nguồn bổ trợ nhau, giảm rủi ro phụ thuộc một kênh.
 
 <br />
 
@@ -182,13 +179,13 @@ Intentra tạo doanh thu từ nhiều nguồn, không phụ thuộc vào một k
 
 Khi hệ sinh thái và quy mô tăng, doanh thu có thể mở rộng theo các hướng sau:
 
-- **Tăng trần phí / tier** — Giữ 0.1% cho gói cơ bản; gói Premium Merchant hoặc volume lớn có cấu trúc phí riêng (subscription + % thấp hơn).  
-- **Quầy hàng & sản phẩm tự nhập** — Merchant bán trực tiếp trên nền Intentra → thu phí listing hoặc % doanh thu.  
-- **AI ưu tiên hiển thị** — Gợi ý trung lập làm nền; merchant có thể trả thêm để tăng độ hiển thị (minh bạch, có kiểm soát).  
-- **Subscription automation & AI tài chính** — User trả phí subscription cho các tính năng nâng cao (tự động hóa đơn, tối ưu chi tiêu) → doanh thu định kỳ.  
-- **Mở rộng ngành dọc** — Mỗi ngành mới (bảo hiểm, giáo dục, tài chính) thêm luồng giao dịch và referral, nhân bản mô hình doanh thu hiện tại.  
+- **Phân tầng phí (tier)** — Giữ 0.1% cho gói cơ bản; merchant volume lớn hoặc Premium trả subscription + % thấp hơn.  
+- **Quầy hàng trên Intentra** — Merchant bán trực tiếp trên nền ta (sản phẩm tự nhập) → thu phí listing hoặc % doanh thu.  
+- **Tăng độ hiển thị (có kiểm soát)** — Gợi ý mặc định trung lập; merchant có thể trả thêm để được ưu tiên hiển thị, minh bạch.  
+- **Subscription từ user** — User trả phí định kỳ cho tính năng nâng cao (tự động hóa hóa đơn, tối ưu chi tiêu) → doanh thu lặp lại.  
+- **Thêm ngành dọc** — Mỗi ngành mới (bảo hiểm, giáo dục, tài chính) = thêm giao dịch + referral, nhân bản mô hình hiện tại.  
 
-*Mục tiêu dài hạn: doanh thu đa nguồn — transaction, referral, subscription, và các dịch vụ giá trị gia tăng — giúp Intentra ổn định và có thể mở rộng bền vững.*
+*Mục tiêu: doanh thu đa nguồn (giao dịch + referral + subscription + giá trị gia tăng) → ổn định, dễ mở rộng.*
 
 <br />
 
@@ -196,40 +193,30 @@ Khi hệ sinh thái và quy mô tăng, doanh thu có thể mở rộng theo các
 
 ## 🎯 VỊ THẾ CHIẾN LƯỢC
 
-**Intentra là:**
+**Intentra là** lớp trung gian đầu tiên gom đủ:
 
-Lớp giao dịch trung gian đầu tiên tích hợp:
-
-- AI Orchestration  
-- Multi-platform execution  
-- Unified payment layer  
-- Referral + transaction revenue  
-- AI widget cho toàn bộ hệ sinh thái  
+- **Điều phối bằng AI** — một câu nói, nhiều dịch vụ thực hiện.  
+- **Nhiều nền tảng** — vé, đồ ăn, hóa đơn, streaming… cùng một chỗ.  
+- **Một lớp thanh toán** — user không phải nhập thẻ từng site.  
+- **Doanh thu kép** — từ giao dịch (0.1%) và từ giới thiệu (referral).  
+- **Widget AI** — merchant nào cũng có thể nhúng, mở rộng hệ sinh thái.  
 
 <br />
 
-Internet đang chuyển từ:
-
-| **Click-based economy** | → | **Intent-based economy** |
-|-------------------------|---|---------------------------|
-
-Người dùng không còn muốn tìm kiếm.  
-**Họ muốn ra lệnh.**
-
-*Intentra tồn tại để xử lý phần còn lại.*
+**Xu hướng:** Internet đang chuyển từ *tìm kiếm + click* sang *ra lệnh + thực hiện*. User không muốn search rồi vào từng website — họ muốn nói một câu và xong. **Intentra làm phần “thực hiện” đó.**
 
 <br />
 
-### Why Now?
+### Why Now? (Tại sao làm bây giờ?)
 
-- AI đã đủ tốt để xử lý multi-step orchestration  
-- Người dùng đã quen với AI assistant  
-- API economy đã trưởng thành  
-- Open banking / crypto wallet phổ biến hơn  
+- **AI đủ mạnh** — có thể xử lý nhiều bước (tìm vé, so sánh, đặt, thanh toán) trong một cuộc hội thoại.  
+- **User đã quen** — ChatGPT, assistant trên điện thoại khiến “nói chuyện với AI” thành bình thường.  
+- **API sẵn có** — doanh nghiệp mở API, dữ liệu; dễ kết nối hơn trước.  
+- **Thanh toán mở** — ví, open banking, crypto phổ biến → tích hợp thanh toán khả thi hơn.  
 
-### Network Effect
+### Network Effect (Hiệu ứng mạng)
 
-Intentra có 2 network effect:
+Intentra có hai phía cộng hưởng:
 
 | **User side** | **Merchant side** |
 |---------------|-------------------|
@@ -253,18 +240,14 @@ Intentra có 2 network effect:
 
 **Vấn đề của Google:**
 
-1. **Mô hình kinh doanh xung đột**  
-   Google kiếm tiền từ: → Quảng cáo · → Click · → Search traffic  
-   Intentra thì: → Giảm search · → Bỏ qua click · → Thực hiện giao dịch trực tiếp  
-   *Nếu Google đẩy mạnh intent-based execution, họ tự phá mô hình quảng cáo của mình.*
+1. **Xung đột với mô hình quảng cáo**  
+   Google kiếm tiền từ quảng cáo, click, search. Intentra giảm search và click — user ra lệnh, AI làm luôn. Google đẩy mạnh “nói một câu làm xong” = tự làm yếu doanh thu quảng cáo.
 
-2. **Google không trung lập**  
-   Google có lợi ích riêng: Ưu tiên sản phẩm của mình · Ưu tiên đối tác trả tiền quảng cáo  
-   Intentra định vị là: → Neutral orchestration layer · → Không ưu tiên ai · → Kiếm tiền từ transaction & referral minh bạch  
+2. **Google khó trung lập**  
+   Google ưu tiên sản phẩm của mình và đối tác trả tiền. Intentra định vị **trung lập**: không ưu tiên ai, kiếm tiền từ phí giao dịch và referral minh bạch.
 
-3. **Big Tech không linh hoạt**  
-   Google cần: Compliance toàn cầu · Phê duyệt nội bộ · Tối ưu cổ đông  
-   Startup có thể: → Build nhanh · → Thử nghiệm nhanh · → Tập trung niche trước  
+3. **Big Tech chậm, startup nhanh**  
+   Google phải compliance toàn cầu, phê duyệt nội bộ, tối ưu cho cổ đông. Startup có thể build nhanh, thử nghiệm, tập trung niche trước.  
 
 <br />
 
@@ -274,11 +257,11 @@ OpenAI xây AI.
 
 **Họ không muốn:** Trở thành payment processor · Làm compliance merchant · Xử lý chargeback · Quản lý merchant network  
 
-| **OpenAI là** | **Intentra là** |
-|---------------|-----------------|
-| → Infrastructure AI provider | → AI Commerce Execution Layer |
+| **OpenAI** | **Intentra** |
+|------------|--------------|
+| Bán “động cơ” AI (API, model) | Xây lớp thương mại trên động cơ đó: kết nối user ↔ merchant, thanh toán, giao dịch |
 
-*OpenAI bán engine. Intentra xây hệ sinh thái thương mại trên engine đó.*
+*OpenAI bán engine. Intentra dùng engine đó để xây hệ sinh thái mua bán, thanh toán.*
 
 **Nếu OpenAI làm trực tiếp:** Họ sẽ xung đột với toàn bộ khách hàng API · Họ trở thành competitor của đối tác · *Điều đó không phù hợp chiến lược của họ.*
 
@@ -288,28 +271,14 @@ OpenAI xây AI.
 
 **Stripe rất mạnh về:** Payment · API · Checkout · Fraud · Infrastructure  
 
-**Nhưng Stripe không:** Điều phối vé máy bay · Gợi ý nguyên liệu mâm cỗ · Xử lý AI conversation orchestration · Tích hợp đa ngành như một assistant  
+**Nhưng Stripe không làm:** Điều phối vé máy bay, gợi ý nguyên liệu, hội thoại AI đa bước, tích hợp nhiều ngành như một trợ lý. Stripe là **hạ tầng thanh toán**; Intentra là **lớp quyết định + điều phối + thực thi** — user nói ý định, ta quyết định đặt gì/ở đâu và thực hiện (Stripe có thể nằm bên dưới khi thanh toán).
 
-| **Stripe là** | **Intentra là** |
-|---------------|-----------------|
-| → Payment infrastructure | → Decision + orchestration + execution layer |
-
-*Stripe xử lý tiền. Intentra xử lý ý định.*
+*Tóm lại: Stripe xử lý tiền. Intentra xử lý “user muốn gì” và đảm bảo việc đó được thực hiện.*
 
 <br />
 
 ### Tương lai mở rộng
 
-**Khi hệ sinh thái đủ lớn:**
+**Khi hệ sinh thái đủ lớn:** Quầy hàng trên Intentra (merchant tự nhập sản phẩm) · Gói Premium cho merchant · Tăng độ hiển thị (merchant trả thêm) · Tự động hóa đơn, AI tài chính cho user (subscription).
 
-- Quầy hàng riêng  
-- Sản phẩm tự nhập  
-- Premium Merchant Program  
-- AI ưu tiên hiển thị  
-- Subscription automation  
-- AI tài chính cá nhân  
-
-**Nhưng giai đoạn đầu:**
-
-Tập trung vào việc trở thành:  
-**Cầu nối thông minh giữa user và doanh nghiệp.**
+**Giai đoạn hiện tại:** Tập trung thành **cầu nối thông minh** — user ra lệnh, doanh nghiệp giao hàng/dịch vụ, Intentra ở giữa (điều phối + thanh toán). Không ôm vận hành thay merchant.
